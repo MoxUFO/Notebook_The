@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {readFile, writeFile} = require("fs/promises")
 const path = require('path');
-
+const { v4: uuidv4 } = require('uuid');
 const latestNotes = async () => {
     // return readFile('./db/db.json').then((data) =>{
     //     console.log(JSON.parse(data))
@@ -13,17 +13,27 @@ const latestNotes = async () => {
 }
 
 router.get('/', async (req, res) =>{
-    // res.json( await latestNotes())
-    res.sendFile(path.join(__dirname, '/public/notes.html'))
+    res.json( await latestNotes())
 });
 
 router.post('/', async (req, res) =>{
-    console.log(req.body);
+    // console.log(req.body.title);
     console.log("Should be posting a note")
     var notes = await latestNotes()
-    notes.push(req.body)
+    let newNote = {
+        title: req.body.title,
+        text: req.body.text,
+        note_id: uuidv4()
+    }
+    notes.push(newNote)
     writeFile("./db/db.json", JSON.stringify(notes))
     res.json({message: "You added a note"})
+    
+});  
+
+router.delete('/', async (req, res) =>{
+    let notes = await latestNotes();
+    console.log(notes);
 });
 
 module.exports = router

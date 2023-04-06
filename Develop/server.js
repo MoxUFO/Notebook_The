@@ -12,7 +12,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', api);
-
+// const notes = require('./routes/notes')
+// app.use('/',notes)
 app.use(express.static('public'));
 
 // GET Route for homepage
@@ -21,9 +22,9 @@ app.get('/', (req, res) =>
 );
 
 // GET Route for feedback page
-// app.get('/notes', (req, res) =>
-//   res.sendFile(path.join(__dirname, '/public/notes.html'))
-// );
+app.get('/notes', (req, res) =>
+  res.sendFile(path.join(__dirname, '/public/notes.html'))
+);
 
 
 app.get('/*', (req,res) =>{
