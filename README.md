@@ -36,6 +36,15 @@ previously created notes will display the body of the saved note in the text inp
 area so user can type a new note press the plus symbol near where the save button appears and you are set to 
 save another thought.
 
+photo of site.
+
+![Screenshot 2023-04-10 180348](https://user-images.githubusercontent.com/121896793/231007807-4a04684e-20eb-4f68-b48b-6e03efd82836.png)
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+![Screenshot 2023-04-10 180531](https://user-images.githubusercontent.com/121896793/231007974-8fc8c2f4-88a2-4a06-ad0d-45f3a1ebf682.png)
+
+
 ## License
 
 This Project is under the MIT license
