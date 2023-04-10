@@ -23,17 +23,25 @@ router.post('/', async (req, res) =>{
     let newNote = {
         title: req.body.title,
         text: req.body.text,
-        note_id: uuidv4()
+        id: uuidv4()
     }
     notes.push(newNote)
-    writeFile("./db/db.json", JSON.stringify(notes))
-    res.json({message: "You added a note"})
+    console.log(req.body);
+    await writeFile("./db/db.json", JSON.stringify(notes))
+    res.json(newNote)
     
 });  
 
-router.delete('/', async (req, res) =>{
+router.delete('/:id', async (req, res) =>{
     let notes = await latestNotes();
-    console.log(notes);
+    // console.log(notes);
+   const filteredNotes = notes.filter((note)=>
+        note.id !== req.params.id
+)
+    console.log(filteredNotes);
+    await writeFile('./db/db.json', JSON.stringify(filteredNotes))
+    console.log(req.params.id);
+    res.json({ok: true})
 });
 
 module.exports = router
